@@ -73,7 +73,11 @@ const app = {
             var hours = correctedTime.getHours();
             var minutes = correctedTime.getMinutes();
             var seconds = correctedTime.getSeconds();
-            time.innerHTML = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+            if (!isNaN(hours)) {
+                time.innerHTML = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+            }
+            
         }, 1000)
     },
 
@@ -104,8 +108,6 @@ const app = {
                 mainAudio.play();
                 iconSplashMusic.classList.toggle('hide')
                 app.isPlaying = true;
-
-                console.log(localStorage.get());
             } else {
                 mainAudio.pause();
                 app.isPlaying = false;
@@ -158,6 +160,7 @@ const app = {
 
     getApiData(cityName, apiKey) {
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric&lang=vi`;
+        time.innerHTML = ``;
         fetch(apiUrl)
             .then(function (response) {
                 return response.json();
@@ -183,6 +186,7 @@ const app = {
                 let check = correctedTime.getHours() < 18;
 
                 idInterval = setInterval(() => {
+                    
                     var currentTime = new Date();
                     var timezoneOffsetInSeconds = data.timezone; // Giả sử data.timezone là chênh lệch múi giờ tính bằng giây
 
@@ -200,15 +204,13 @@ const app = {
                     var todayDate = daysOfWeek[correctedTime.getDay()];
 
                     date.innerHTML = `${todayDate}, ${monthArr[correctedTime.getMonth()]} ${correctedTime.getDate()}, ${correctedTime.getFullYear()}`;
-                    time.innerHTML = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 
-                    // console.log(check);
+                    time.innerHTML = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+                    
                     if (hours < 18 && check) {
-                        console.log('sáng');
                         background.src = './video/day.mp4';
                         check = false;
                     } else if (hours >= 18 && !check) {
-                        console.log('tối');
                         background.src = './video/night.mp4';
                         check = true;
                     }
@@ -232,17 +234,9 @@ const app = {
                         background.classList.add('hide');
                         background.classList.remove('show');
                     }
-                    
+
                 }, 1000)
-                // var currentTime = new Date();
-                // var timezoneOffsetInSeconds = data.timezone;
-                // var localTimezoneOffset = currentTime.getTimezoneOffset() * 60;
-                // var correctedTime = new Date(currentTime.getTime() + (timezoneOffsetInSeconds + localTimezoneOffset) * 1000);
-                // if (correctedTime.getHours() < 18) {
-                //     background.src = './video/day.mp4';
-                // } else {
-                //     background.src = './video/night.mp4';
-                // }
+                
 
                 var userProfile = {
                     cityName: cityName,
@@ -251,6 +245,7 @@ const app = {
                 localStorage.set(userProfile);
             })
             .catch(function (error) {
+                
                 overlay.classList.remove('hide');
                 popNotFound.classList.remove('hide');
                 app.getCurrentCityTime(currentCityTimeZone);
