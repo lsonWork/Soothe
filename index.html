@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soothe</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+
+            <video autoplay loop muted plays-inline class="back-video"></video>
+            <div class="search-field">
+                <div class="btn-location">
+                    <i class="fa-solid fa-location-dot icon-location"></i>
+                </div>
+                <input type="text" class="search-input">
+                <div class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                </div>
+                <div class="audio">
+                    <i class="fa-solid fa-music icon-audio btn-music">
+                        <i class="fa-solid fa-slash icon-splash-music"></i>
+                    </i>
+                    <audio class="main-audio" src=""></audio>
+                    <i class="fa-solid fa-volume-high icon-audio btn-volume">
+                        <i class="fa-solid fa-slash icon-splash-volume hide-splash"></i>
+                    </i>
+                    <input type="range" name="" id="volume" class="range-volume" value="100" step="1" min="0" max="100">
+                </div>
+            </div>
+            <div class="display-field">
+                <div class="date"></div>
+                <div class="temp-info">
+                    <div class="temp"></div>
+                    <div class="weather"></div>
+                    <div class="weather-description">
+                        <div class="humid">
+                            <i class="fa-solid fa-droplet icon-weather hide"></i>
+                            <span class="humid-value">
+                                
+                            </span>
+                        </div>
+                        <div class="wind">
+                            <i class="fa-solid fa-wind icon-weather hide"></i>
+                            <span class="wind-value">
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="date-info">
+                    <div class="time"></div>
+                    <div class="city"></div>
+                </div>
+            </div>
+            <div class="overlay hide"></div>
+        </div>
+        <div class="pop-not-found hide">
+            <div class="notfound-img">
+            </div>
+            <div class="alert">
+                Sorry ... location not found!
+            </div> 
+            <div class="btn-close-pop">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/localStorage.js"></script>
+</body>
+
+</html>
