@@ -56,7 +56,6 @@ const app = {
     currentSongIndex: 0,
     timeToChangeBackground: 0,
     backgroundStatus: 0,
-    lastCity: '',
     loadSongToApp(index) {
         mainAudio.src = this.listSong[index].path;
     },
@@ -86,14 +85,12 @@ const app = {
         searchInput.onkeyup = function (e) {
             if (e.code === 'Enter') {
                 const cityName = searchInput.value;
-                lastCity = cityName;
                 app.getApiData(cityName, '7f19ba76e4d8fac0eb3c946d922a2807');
             }
         }
 
         btnSearch.onclick = function () {
             const cityName = searchInput.value;
-            lastCity = cityName;
             app.getApiData(cityName, '7f19ba76e4d8fac0eb3c946d922a2807');
         }
 
